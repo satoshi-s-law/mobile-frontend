@@ -20,7 +20,7 @@ class TimerAdapter(
             view.timer_project_name.text = data.projectName
             view.timer_client_name.text = data.clientName
 
-            view.timer_hours_textview.text = (data.duration.toString() + ":00 hrs")
+            view.timer_hours_textview.text = (data.duration + ":00 hrs")
 
 
 

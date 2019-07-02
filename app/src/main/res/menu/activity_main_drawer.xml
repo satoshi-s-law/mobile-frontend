@@ -14,7 +14,7 @@
                 android:title="@string/menu_insert"/>
         <item
                 android:id="@+id/nav_people"
-                android:icon="@drawable/ic_people"
+                android:icon="@drawable/baseline_people_black_18dp"
                 android:title="@string/menu_people"/>
         <item
                 android:id="@+id/nav_settings"

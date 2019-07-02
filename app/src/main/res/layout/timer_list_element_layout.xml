@@ -6,7 +6,7 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="60dp"
                                                    app:cardCornerRadius="0dp"
-                                                   android:layout_marginBottom="2dp">
+                                                   android:layout_marginBottom="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                        android:layout_height="match_parent"
@@ -20,7 +20,9 @@
                 android:id="@+id/timer_project_name" android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="12dp" android:textColor="#DEFDFDFD"/>
+                android:layout_marginTop="12dp" android:textColor="#DEFDFDFD"
+                android:layout_marginBottom="29dp" app:layout_constraintBottom_toBottomOf="parent"
+                android:fontFamily="@font/montserrat"/>
         <TextView
                 android:text="Client Name"
                 android:layout_width="wrap_content"
@@ -28,22 +30,21 @@
                 android:id="@+id/timer_client_name" app:layout_constraintStart_toStartOf="@+id/timer_project_name"
                 app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="7dp"
                 android:layout_marginTop="35dp" app:layout_constraintTop_toTopOf="parent"
-                android:textColor="#FFFFE0B2"/>
+                android:textColor="#FFFFE0B2" android:fontFamily="@font/montserrat"/>
         <TextView
                 android:text="00:00 hrs"
-                android:height="15dp"
-                android:layout_width="wrap_content"
-                android:width="57dp"
-                android:layout_height="fill_parent"
-                android:lineSpacingMultiplier="1.25"
+                android:layout_width="0dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.29"
                 android:background="@drawable/timer_circle_border"
                 android:id="@+id/timer_hours_textview" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="19dp" app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="19dp" app:layout_constraintBottom_toBottomOf="parent"
                 android:textAlignment="center" android:textSize="12sp" android:lineSpacingExtra="8sp"
-                app:layout_constraintStart_toEndOf="@+id/timer_project_name"
-                app:layout_constraintHorizontal_bias="1.0" android:textColor="#DEFFFFFF"/>
+                android:textColor="#DEFFFFFF"
+                android:fontFamily="@font/montserrat"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

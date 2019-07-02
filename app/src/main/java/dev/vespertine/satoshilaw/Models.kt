@@ -10,5 +10,6 @@ data class Project(
     val rate : Double,
     val tasks : MutableList<String> = mutableListOf()
 ) {
-    val duration = startTime + endTime
+    var duration = if  ((startTime + endTime) >= 10) (startTime + endTime).toString()
+                            else "0" + (startTime + endTime).toString()
 }
