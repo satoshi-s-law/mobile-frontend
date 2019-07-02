@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 replaceFragment(TimerFragment.newInstance())
             }
             R.id.nav_insert -> {
-                toolbar.visibility = View.INVISIBLE
             }
             R.id.nav_people -> {
 
