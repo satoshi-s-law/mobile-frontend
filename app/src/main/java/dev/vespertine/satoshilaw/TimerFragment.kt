@@ -7,14 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-
+import kotlinx.android.synthetic.main.fragment_timer.*
 
 
 class TimerFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    val list = mutableListOf<Project>()
+    lateinit var adapter : TimerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +29,22 @@ class TimerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val p1 = Project(1, )
+        val p1 = Project(1, "Project Name", "Client Name",
+            0, 0, 35.00)
+        val p2 = Project(2, "Summer Hackathon", "Lambda School",
+            0, 48, 100.00)
+
+        list.add(p1)
+        list.add(p2)
+
+        adapter = TimerAdapter(list)
+        timer_recyclerView.adapter = adapter
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+
     }
 
     companion object {
