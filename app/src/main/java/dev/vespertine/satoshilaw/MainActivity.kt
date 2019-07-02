@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 replaceFragment(TimerFragment.newInstance())
             }
             R.id.nav_insert -> {
+
             }
             R.id.nav_people -> {
 

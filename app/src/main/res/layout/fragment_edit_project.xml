@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".EditProjectFragment">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                     android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp" android:background="@color/colorNavHeader">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/invoice_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:paddingEnd="16dp"
+                android:paddingStart="6dp"
+                app:contentInsetStartWithNavigation="0dp"
+                app:navigationIcon="@drawable/baseline_close_white_24dp"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:background="#222222"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</FrameLayout>
+        <TextView
+                android:textAppearance="@android:style/Theme.Leanback.FormWizard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorNavHeader"
+                android:textAlignment="textStart"
+                android:fontFamily="@font/montserrat"
+                android:textSize="11sp"
+                android:textColor="#99FFFFFF"
+                android:textStyle="bold"
+                android:text="PROJECT NAME"
+                android:paddingLeft="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" android:id="@+id/project_frag_project_label"/>
+        <EditText
+                android:background="@color/colorNavHeader"
+                android:textColor="#DEFFFFFF"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat"
+                android:layout_width="0dp"
+                android:paddingTop="8dp"
+                android:textSize="16sp"
+                android:paddingStart="16dp"
+                android:paddingBottom="15dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/project_frag_project_name"
+                app:layout_constraintStart_toStartOf="@+id/project_frag_project_label"
+                app:layout_constraintTop_toBottomOf="@+id/project_frag_project_label"
+                app:layout_constraintEnd_toEndOf="@+id/project_frag_project_label"
+        />
+        <TextView
+                android:text="CLIENT NAME"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#99FFFFFF"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toBottomOf="@+id/project_frag_project_name" android:layout_marginTop="12dp"/>
+        <EditText
+                android:textColor="#DEFFFFFF"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Name"
+                android:id="@+id/editText"
+                app:layout_constraintStart_toStartOf="@+id/textView2" android:layout_marginTop="34dp"
+                app:layout_constraintTop_toBottomOf="@+id/project_frag_project_name"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
