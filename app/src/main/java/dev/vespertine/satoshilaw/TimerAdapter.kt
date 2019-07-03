@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.timer_list_element_layout.view.*
@@ -20,7 +21,13 @@ class TimerAdapter(
             view.timer_project_name.text = data.projectName
             view.timer_client_name.text = data.clientName
 
-            view.timer_hours_textview.text = (data.duration + ":00 hrs")
+            view.timer_hours_textview.text = """${data.duration}:00 hrs"""
+            view.setOnClickListener{
+                val activity = it.context as AppCompatActivity
+
+                activity.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, EditProjectFragment.newInstance())
+                    ?.commit()
+            }
 
 
 

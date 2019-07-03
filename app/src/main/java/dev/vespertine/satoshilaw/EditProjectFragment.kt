@@ -3,6 +3,7 @@ package dev.vespertine.satoshilaw
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,17 +12,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_edit_project.*
+import android.text.InputFilter
+import android.text.TextWatcher
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+
+
+
+
 
 class EditProjectFragment : DialogFragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var project: Project? = null
+
 //    private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,16 +48,56 @@ class EditProjectFragment : DialogFragment() {
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity).supportActionBar!!.show()
+     //   fragmentManager?.popBackStack()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        edit_project_toolbar.setNavigationOnClickListener { dismiss()}
-        edit_project_toolbar.inflateMenu(R.menu.dialog)
-        edit_project_toolbar.setOnMenuItemClickListener { item ->
+        hourly_edit_text.addTextChangedListener(NumberTextWatcher(hourly_edit_text, "#,###"))
+        //start_edittext.filters = arrayOf<InputFilter>(InputFilterMinMax("1", "12"))
+//        start_edittext.addTextChangedListener(object : TextWatcher {
+//
+//            override fun afterTextChanged(p0: Editable?) {
+//                start_edittext.removeTextChangedListener(this)
+//
+//                if (p0 != null && p0.toString().isNotEmpty()) {
+//                    try{
+//                        val startString = Integer.parseInt(start_edittext.text.toString())
+//                        val startSet = if (startString <= 12) "$startString:00 AM"
+//                        else (startString - 12).toString() + ":00 PM"
+//                        start_edittext.setText(startSet)
+//                    } catch (e: NumberFormatException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//
+//
+//                start_edittext.addTextChangedListener(this)
+//
+//
+//            }
+//
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//            }
+//
+//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//            }
+//        })
+        //X Button
+        edit_project_toolbar.setNavigationOnClickListener {
             dismiss()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, TimerFragment.newInstance())
+                ?.addToBackStack(null)?.commit()}
+        edit_project_toolbar.inflateMenu(R.menu.dialog)
+        //Save Button
+        edit_project_toolbar.setOnMenuItemClickListener {
+            dismiss()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, TimerFragment.newInstance())
+                ?.addToBackStack(null)?.commit()
             true
         }
+
+
     }
 
 
@@ -105,6 +148,7 @@ class EditProjectFragment : DialogFragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = EditProjectFragment()
+        fun 
 
     }
 }

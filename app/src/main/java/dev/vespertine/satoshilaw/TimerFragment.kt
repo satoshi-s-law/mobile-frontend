@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import kotlinx.android.synthetic.main.fragment_timer.*
 
 
@@ -30,15 +31,17 @@ class TimerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val p1 = Project(1, "Project Name", "Client Name",
-            0, 0, 35.00)
+            0.00, 0, 0, 0)
         val p2 = Project(2, "Summer Hackathon", "Lambda School",
-            0, 48, 100.00)
+            30.00, 24, 9, 21 )
 
-        list.add(p1)
-        list.add(p2)
+        adapter = TimerAdapter((activity as MainActivity).getProjects())
 
-        adapter = TimerAdapter(list)
         timer_recyclerView.adapter = adapter
+        floatingActionButton.setOnClickListener{v->
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, EditProjectFragment.newInstance())
+                ?.commit()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

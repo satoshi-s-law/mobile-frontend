@@ -2,7 +2,6 @@ package dev.vespertine.satoshilaw
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,10 +9,11 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    public val projectList = mutableListOf<Project>()
+    lateinit var focusProject : Project
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +31,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
+//        supportFragmentManager.beginTransaction()
+//            .add(R.id.fragment_container, TimerFragment.newInstance())
+//            .addToBackStack(null)
+//            .commit()
 
+        replaceFragment(TimerFragment.newInstance())
       //  toolbar.setTitleTextColor(resources.getColor(R.color.colorPrimary))
+
+        val p1 = Project(1, "Project Name", "Client Name",
+            0.00, 0, 0, 0)
+        val p2 = Project(2, "Summer Hackathon", "Lambda School",
+            30.00, 24, 9, 21 )
+
+        projectList.add(p1)
+        projectList.add(p2)
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
 
     }
 
@@ -45,21 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-/*    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }*/
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
@@ -84,12 +90,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
 
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
             .commit()
 
     }
+
+    public fun getProjects(): MutableList<Project> {
+        return projectList
+    }
+
+    fun addProject(toAdd: Project) {
+        projectList.add(toAdd)
+    }
+
+    fun setProjectFocus(project:Project) {
+        focusProject = project
+    }
+
 }
