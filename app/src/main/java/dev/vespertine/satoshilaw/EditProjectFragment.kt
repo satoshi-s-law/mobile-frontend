@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
+import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.fragment_edit_project.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -14,27 +18,15 @@ import android.view.ViewGroup
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [EditProjectFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [EditProjectFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
-class EditProjectFragment : Fragment() {
+class EditProjectFragment : DialogFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
+//    private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog)
     }
 
     override fun onCreateView(
@@ -45,24 +37,45 @@ class EditProjectFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_edit_project, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar!!.hide()
     }
 
-    override fun onAttach(context: Context) {
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).supportActionBar!!.show()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        edit_project_toolbar.setNavigationOnClickListener { dismiss()}
+        edit_project_toolbar.inflateMenu(R.menu.dialog)
+        edit_project_toolbar.setOnMenuItemClickListener { item ->
+            dismiss()
+            true
+        }
+    }
+
+
+    // TODO: Rename method, update argument and hook method into UI event
+/*    fun onButtonPressed(uri: Uri) {
+        listener?.onFragmentInteraction(uri)
+    }*/
+
+/*    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
-    }
+    }*/
 
-    override fun onDetach() {
+/*    override fun onDetach() {
         super.onDetach()
         listener = null
-    }
+    }*/
 
     /**
      * This interface must be implemented by activities that contain this
@@ -91,12 +104,7 @@ class EditProjectFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EditProjectFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() = EditProjectFragment()
+
     }
 }
